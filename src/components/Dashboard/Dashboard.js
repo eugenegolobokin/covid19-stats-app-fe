@@ -2,15 +2,20 @@ import React from 'react';
 import { Container, Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import makeStyles from '@material-ui/core/styles/makeStyles';
+import Dropdown from './Dropdown';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexDirection: 'column',
     alignContent: 'center',
-    alignItems: 'flex-start',
     justifyContent: 'center',
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
+  },
+  item: {
+    textAlign: 'center',
+    paddingTop: theme.spacing(1),
+    paddingBottom: theme.spacing(1),
   },
 }));
 
@@ -19,10 +24,16 @@ function Dashboard() {
 
   return (
     <>
-      <Container maxWidth="md">
+      <Container fixed maxWidth="md">
         <Grid container className={classes.root}>
-          <Grid item>
-            <Typography variant="h3">Hello, I`m a Dashboard!</Typography>
+          <Grid item className={classes.item}>
+            <Typography variant="h2">COVID-19 Statistics App</Typography>
+          </Grid>
+          <Grid item className={classes.item}>
+            <Typography variant="h6">Select country from a list below to see weekly stats</Typography>
+          </Grid>
+          <Grid item className={classes.item}>
+            <Dropdown />
           </Grid>
         </Grid>
       </Container>
