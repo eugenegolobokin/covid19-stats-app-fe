@@ -1,0 +1,60 @@
+{
+  "name": "covid19-stats-app-fe",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.11.2",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.7.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.3"
+  },
+  "devDependencies": {
+    "axios": "^0.21.1",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "prettier": "^2.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "npm run -s lint:prettier:check && npm run -s lint:eslint:check",
+    "lint:prettier:check": "prettier --check \"src/**/*.{js,jsx,scss,json,css,md}\"",
+    "lint:prettier:fix": "prettier --write \"src/**/*.{js,jsx,scss,json,css,md}\"",
+    "lint:eslint": "eslint --max-warnings 0",
+    "lint:eslint:check": "npm run -s lint:eslint \"src/**/*.{js,jsx}\"",
+    "lint:eslint:fix": "npm run -s lint:eslint \"src/**/*.{js,jsx}\" --fix",
+    "pre-commit": "npm run lint:prettier:fix --staged",
+    "pre-push": "npm run lint:eslint:check"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit",
+      "pre-push": "npm run pre-push"
+    }
+  }
+}
