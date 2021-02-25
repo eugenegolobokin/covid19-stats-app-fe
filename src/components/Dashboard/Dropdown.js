@@ -2,22 +2,25 @@ import React, { useContext } from 'react';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { CountryContext } from '../../context/countryContext';
-import useGetCountries from '../../services/DataFetchService';
-import { BE_ENDPOINTS } from '../constants';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 
-function Dropdown() {
-  const { data, error, isLoading } = useGetCountries(BE_ENDPOINTS.COUNTRIES);
+Dropdown.propTypes = {
+  countries: PropTypes.object,
+};
+
+function Dropdown(props) {
+  const { countries } = props;
   const { setCountry } = useContext(CountryContext);
 
   const content = () => {
-    if (error !== null) {
+    if (countries.error !== null) {
       return (
         <Container align="center" maxWidth="md">
           <Typography variant="h5" color="error">
-            {error}
+            {countries.error}
           </Typography>
         </Container>
       );
@@ -28,7 +31,7 @@ function Dropdown() {
           onChange={(event, newValue) => {
             newValue !== null ? setCountry(newValue.country) : setCountry('');
           }}
-          options={data}
+          options={countries.data}
           getOptionLabel={(option) => option.country}
           fullWidth
           renderInput={(params) => (
@@ -39,7 +42,7 @@ function Dropdown() {
     }
   };
 
-  return isLoading ? <LinearProgress /> : content();
+  return countries.isLoading ? <LinearProgress /> : content();
 }
 
 export default Dropdown;

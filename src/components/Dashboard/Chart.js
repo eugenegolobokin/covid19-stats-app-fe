@@ -1,28 +1,26 @@
-import React, { useContext } from 'react';
-import { CountryContext } from '../../context/countryContext';
-import useGetStatsDeathsForCountry from '../../services/DataFetchService';
-import useGetStatsCasesForCountry from '../../services/DataFetchService';
-import { BE_ENDPOINTS } from '../constants';
-import Container from '@material-ui/core/Container';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Line, defaults } from 'react-chartjs-2';
+import PropTypes from 'prop-types';
 
 defaults.global.legend.position = 'bottom';
 
-function Chart() {
-  const { currentCountry } = useContext(CountryContext);
-  const cases = useGetStatsCasesForCountry(BE_ENDPOINTS.COUNTRY_STATS_CASES + currentCountry.country);
-  const deaths = useGetStatsDeathsForCountry(BE_ENDPOINTS.COUNTRY_STATS_DEATHS + currentCountry.country);
+Chart.propTypes = {
+  cases: PropTypes.object,
+  deaths: PropTypes.object,
+  country: PropTypes.string,
+};
+
+function Chart(props) {
+  const { cases, deaths, country } = props;
 
   const content = () => {
     if (cases.error || deaths.error !== null) {
       return (
-        <Container align="center" maxWidth="md">
-          <Typography variant="h5" color="error">
-            {cases.error || deaths.error}
-          </Typography>
-        </Container>
+        <Typography variant="h5" color="error">
+          {cases.error || deaths.error}
+        </Typography>
       );
     } else {
       return (
@@ -46,11 +44,11 @@ function Chart() {
               ],
             }}
             height={500}
-            width={600}
+            width={900}
             options={{
               title: {
                 display: true,
-                text: 'Weekly statistics for ' + currentCountry.country,
+                text: 'Weekly statistics for ' + country,
                 fontSize: 20,
                 fontFamily: 'Roboto',
               },

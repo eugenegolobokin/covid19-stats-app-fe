@@ -6,14 +6,15 @@ import { RESPONSE_STATUS } from '../components/constants';
 function useFetchData(urlPath) {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
-  const [isLoading, setIsloading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axiosInstance
       .get(urlPath)
       .then((res) => {
         setData(res.data);
-        setIsloading(false);
+        setError(null);
+        setIsLoading(false);
       })
       .catch((error) => {
         if (!error.response) {
@@ -28,7 +29,7 @@ function useFetchData(urlPath) {
         } else {
           setError(MESSAGES_ERROR.BAD_REQUEST);
         }
-        setIsloading(false);
+        setIsLoading(false);
       });
   }, [urlPath]);
 
