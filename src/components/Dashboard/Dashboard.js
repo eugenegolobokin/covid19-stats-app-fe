@@ -3,6 +3,7 @@ import { Container, Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import Dropdown from './Dropdown';
+import Chart from './Chart';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,16 +25,19 @@ function Dashboard() {
 
   return (
     <>
-      <Container fixed maxWidth="md">
+      <Container fixed maxWidth="lg">
         <Grid container className={classes.root}>
           <Grid item className={classes.item}>
-            <Typography variant="h2">COVID-19 Statistics App</Typography>
+            <Typography variant="h1">COVID-19 Statistics App</Typography>
           </Grid>
           <Grid item className={classes.item}>
             <Typography variant="h6">Select country from a list below to see weekly stats</Typography>
           </Grid>
           <Grid item className={classes.item}>
             <Dropdown />
+          </Grid>
+          <Grid item className={classes.item}>
+            <Chart />
           </Grid>
         </Grid>
       </Container>

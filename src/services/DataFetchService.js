@@ -16,7 +16,6 @@ function useFetchData(urlPath) {
         setIsloading(false);
       })
       .catch((error) => {
-        console.log(error.response);
         if (!error.response) {
           setError(MESSAGES_ERROR.SERVER_NOT_RESPONDING);
         } else if (

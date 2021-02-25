@@ -10,4 +10,6 @@ export const RESPONSE_STATUS = {
 
 export const BE_ENDPOINTS = {
   COUNTRIES: '/countries',
+  COUNTRY_STATS_DEATHS: '/stats/deaths/',
+  COUNTRY_STATS_CASES: '/stats/cases/',
 };
